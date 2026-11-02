@@ -34,7 +34,136 @@ Kelola isi dan status aktif melalui administrasi layanan/FAQ. Nama layanan dan p
 
 Bot WhatsApp menampilkan seluruh judul FAQ aktif dengan nomor berurutan (bukan ID database), lalu satu jawaban sesuai pilihan; 12 topik ini mengelompokkan rincian agar menu tidak menjadi monolog panjang. Uji akses semua nomor dan pelestarian data: `php artisan test --filter=ServiceFaqSeederTest` (konfigurasi PHPUnit memakai database terpisah `relasiku_crm_test`).
 
-## Persyaratan dan instalasi lokal
+## Panduan Clone & Setup untuk Teman
+
+Ikuti langkah di bawah untuk mengklone dan menjalankan SistemCRM_Relasiku di komputer Anda.
+
+### Prasyarat
+Pastikan sudah terinstall:
+- **PHP 8.2+** (cek: `php -v`)
+- **Composer** (cek: `composer -v`)
+- **Node.js 20+** (cek: `node -v` dan `npm -v`)
+- **MySQL** (XAMPP, Laragon, atau standalone; pastikan berjalan)
+- **Git** (cek: `git -v`)
+
+### Langkah-Langkah Setup
+
+#### 1. Clone Repository
+Buka PowerShell/Command Prompt di folder yang diinginkan, lalu jalankan:
+
+```powershell
+git clone https://github.com/Oxwazolsky/SistemCRM_Relasiku.git
+cd SistemCRM_Relasiku/crm
+```
+
+#### 2. Install Dependencies
+```powershell
+composer install
+npm ci
+```
+
+#### 3. Setup File `.env`
+Salin file contoh `.env`:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Edit `.env` dengan detail MySQL Anda (buka dengan Notepad atau editor favorit):
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=relasiku_crm          # Nama database yang akan dibuat
+DB_USERNAME=root                   # Username MySQL Anda (default XAMPP: root)
+DB_PASSWORD=                       # Password MySQL Anda (default XAMPP: kosong)
+```
+
+**Penting**: Jangan bagikan atau upload file `.env` ke GitHub. File ini sudah ter-ignore dan aman.
+
+#### 4. Buat Database MySQL
+Buka MySQL via phpMyAdmin (XAMPP) atau command line, buat database baru:
+
+```sql
+CREATE DATABASE relasiku_crm CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+#### 5. Generate Application Key & Migrasi
+```powershell
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+```
+
+Perintah di atas akan membuat tabel dan data demo di database.
+
+#### 6. Build Frontend
+```powershell
+npm run build
+```
+
+#### 7. Jalankan Server Laravel
+```powershell
+php artisan serve --host=127.0.0.1 --port=8000
+```
+
+Tunggu sampai output menampilkan:
+```
+Laravel development server started: http://127.0.0.1:8000
+```
+
+#### 8. Akses CRM
+Buka browser dan kunjungi:
+- **Landing Page (Publik)**: http://127.0.0.1:8000/inquiry
+- **Login (Staf)**: http://127.0.0.1:8000/login
+
+### Akun Demo Bawaan
+
+Setelah menjalankan `php artisan db:seed`, gunakan akun ini untuk login:
+
+| Peran | Email | Kata Sandi |
+| --- | --- | --- |
+| Admin | `admin@relasiku.test` | `DemoCRM2026!` |
+| Owner | `owner@relasiku.test` | `DemoCRM2026!` |
+| CS | `cs@relasiku.test` | `DemoCRM2026!` |
+
+**⚠️ Penting**: Ganti kata sandi setelah login pertama kali.
+
+### Troubleshooting Setup
+
+**Port 8000 sudah terpakai?**
+Gunakan port lain:
+```powershell
+php artisan serve --host=127.0.0.1 --port=8001
+```
+
+**Error "SQLSTATE" saat migrate?**
+- Pastikan MySQL berjalan
+- Cek detail DB di `.env` sudah benar
+- Buat database secara manual via phpMyAdmin jika belum ada
+
+**Node/npm command tidak ditemukan?**
+- Pastikan Node.js sudah diinstall: `node -v`
+- Restart PowerShell/terminal setelah install Node.js
+
+**File `.env` tidak terbaca?**
+- Gunakan `-A` flag untuk melihat file hidden: `ls -A`
+- Atau gunakan editor (Notepad++) untuk membuka `.env`
+
+### Instruksi Harian
+
+**Menjalankan ulang setelah restart komputer:**
+```powershell
+cd path/to/SistemCRM_Relasiku/crm
+php artisan serve --host=127.0.0.1 --port=8000
+```
+
+**Untuk bot WhatsApp (demo lokal):**
+Lihat panduan lengkap di [`baileys-demo/README.md`](baileys-demo/README.md) setelah setup dasarnya selesai.
+
+---
+
+## Persyaratan dan Instalasi Lokal (Detail Teknis)
 
 - Windows dengan PHP CLI 8.2+, Composer, Node.js 20+, dan MySQL (XAMPP/Laragon). Jalankan perintah berikut dari folder `crm` kecuali disebutkan lain.
 - Pastikan port `8000` tersedia dan PHP CLI memakai ekstensi MySQL. **Jangan jalankan `migrate:fresh` pada database berisi data.**
