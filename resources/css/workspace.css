@@ -1,0 +1,222 @@
+/* Shared internal workspace components; authentication and the app shell are excluded. */
+.crm-internal .workspace-page {
+    --workspace-line: #dce8e1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    color: #203f33;
+}
+.workspace-page > * {
+    min-width: 0;
+}
+.crm-internal .workspace-page .page-head {
+    margin: 0;
+    padding: 28px;
+    border: 1px solid var(--workspace-line);
+    border-radius: 20px;
+    background: linear-gradient(115deg, #edf6ef, #fff 75%);
+    align-items: center;
+    gap: 24px;
+}
+.crm-internal .workspace-page h1 {
+    font-size: clamp(24px, 3vw, 34px);
+    letter-spacing: -0.035em;
+    line-height: 1.2;
+}
+.crm-internal .workspace-page h2 {
+    font-size: 17px;
+    letter-spacing: -0.015em;
+}
+.crm-internal .workspace-page p {
+    line-height: 1.7;
+}
+.crm-internal .workspace-page .eyebrow {
+    color: #46735c;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    font-weight: 800;
+}
+.crm-internal .workspace-page .card {
+    border: 1px solid var(--workspace-line);
+    border-radius: 16px;
+    box-shadow: 0 4px 18px #153e2705;
+    overflow: hidden;
+}
+.crm-internal .workspace-page .card-pad {
+    padding: 24px;
+}
+.workspace-page .workspace-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+    margin: 0;
+}
+.workspace-page .workspace-summary > div {
+    padding: 18px 20px;
+    background: #fff;
+    border: 1px solid var(--workspace-line);
+    border-radius: 14px;
+    border-top: 3px solid #72a785;
+}
+.workspace-page .workspace-summary dt {
+    color: #61776a;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+.workspace-page .workspace-summary dd {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}
+.workspace-page .workspace-summary small {
+    display: block;
+    color: #61776a;
+    font-size: 11px;
+    font-weight: 400;
+    margin-top: 6px;
+}
+.crm-internal .workspace-page .metric {
+    padding: 22px;
+    border-top: 3px solid #72a785;
+}
+.crm-internal .workspace-page .metric strong {
+    font-variant-numeric: tabular-nums;
+}
+.crm-internal .workspace-page .toolbar {
+    padding: 20px 24px;
+    background: #f8fbf9;
+    border-bottom: 1px solid var(--workspace-line);
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.crm-internal .workspace-page .toolbar form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+.crm-internal .workspace-page .table th {
+    background: #f8fbf9;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 14px 20px;
+}
+.crm-internal .workspace-page .table td {
+    padding: 18px 20px;
+    vertical-align: top;
+    border-color: #eaf0ec;
+}
+.crm-internal .workspace-page .table tbody tr:hover {
+    background: #f7fbf8;
+}
+.crm-internal .workspace-page .table td a {
+    font-weight: 650;
+    color: #246143;
+}
+.crm-internal .workspace-page .detail-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 24px;
+}
+.crm-internal .workspace-page .detail-list > div {
+    display: block;
+    padding: 16px 0;
+    min-width: 0;
+}
+.crm-internal .workspace-page .detail-list dt {
+    font-size: 11px;
+    color: #688071;
+    margin-bottom: 6px;
+}
+.crm-internal .workspace-page .detail-list dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+.crm-internal .workspace-page .input {
+    border-color: #cdded3;
+    border-radius: 10px;
+    min-height: 44px;
+    background: #fff;
+}
+.crm-internal .workspace-page .input:focus {
+    outline: 3px solid #b8d9c3;
+    outline-offset: 2px;
+}
+.crm-internal .workspace-page .btn {
+    border-radius: 10px;
+    min-height: 42px;
+}
+.crm-internal .workspace-page .btn-primary {
+    background: #246143;
+    color: white;
+}
+.workspace-page .workspace-form-intro {
+    padding: 0 0 20px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--workspace-line);
+}
+.workspace-page .workspace-form-intro p {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: #61776a;
+}
+.workspace-page .workspace-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.workspace-page .workspace-note {
+    border-left: 3px solid #72a785;
+    padding: 12px 18px;
+    background: #f0f7f2;
+    border-radius: 0 10px 10px 0;
+    font-size: 13px;
+}
+.workspace-page .workspace-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+.crm-internal .workspace-page .form-actions {
+    border-top: 1px solid var(--workspace-line);
+    padding-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.crm-internal .workspace-page .empty {
+    padding: 44px 24px;
+    color: #61776a;
+}
+@media (max-width: 900px) {
+    .workspace-page .workspace-faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 640px) {
+    .crm-internal .workspace-page {
+        gap: 18px;
+    }
+    .crm-internal .workspace-page .page-head,
+    .crm-internal .workspace-page .card-pad {
+        padding: 20px;
+    }
+    .crm-internal .workspace-page .page-head {
+        align-items: stretch;
+    }
+    .crm-internal .workspace-page .detail-list {
+        grid-template-columns: 1fr;
+    }
+    .crm-internal .workspace-page .toolbar form,
+    .crm-internal .workspace-page .toolbar .input {
+        width: 100%;
+    }
+    .workspace-page .workspace-actions {
+        width: 100%;
+    }
+    .workspace-page .workspace-actions .btn {
+        flex: 1;
+    }
+}

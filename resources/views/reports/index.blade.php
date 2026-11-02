@@ -1,0 +1,33 @@
+@extends('layouts.app')
+@section('title', 'Laporan')
+@section('content')
+<div class="workspace-page" data-workspace="reports">
+<div class="page-head report-hero"><div><span class="eyebrow">ANALISIS · KINERJA LAYANAN</span><h1>Laporan & wawasan</h1><p>Pahami tren permintaan, hasil konversi, dan kinerja layanan dalam satu tampilan.</p></div><div class="report-period-chip"><span>PERIODE AKTIF</span><strong>{{ $from->locale('id')->translatedFormat('d M Y') }} — {{ $to->locale('id')->translatedFormat('d M Y') }}</strong></div></div>
+<div class="card card-pad report-filter-card">
+    <div class="workspace-form-intro"><span class="eyebrow">SESUAIKAN ANALISIS</span><h2>Periode & filter laporan</h2><p>Pilih rentang tanggal, penanggung jawab, dan layanan. Ringkasan akan diperbarui sesuai filter yang diterapkan.</p></div>
+    <form method="GET" action="{{ route('reports.index') }}" class="form-grid" style="align-items:end">
+        <div class="field"><label for="from">Dari tanggal</label><input class="input" type="date" id="from" name="from" value="{{ old('from', request('from', $from->toDateString())) }}">@error('from')<span class="error">{{ $message }}</span>@enderror</div>
+        <div class="field"><label for="to">Sampai tanggal</label><input class="input" type="date" id="to" name="to" value="{{ old('to', request('to', $to->toDateString())) }}">@error('to')<span class="error">{{ $message }}</span>@enderror</div>
+        <div class="field"><label for="owner_id">Penanggung jawab</label><select class="input" id="owner_id" name="owner_id"><option value="">Semua petugas</option>@foreach($users as $user)<option value="{{ $user->id }}" @selected(request('owner_id') == $user->id)>{{ $user->name }}</option>@endforeach</select></div>
+        <div class="field"><label for="service_id">Jenis layanan</label><select class="input" id="service_id" name="service_id"><option value="">Semua layanan</option>@foreach($services as $service)<option value="{{ $service->id }}" @selected(request('service_id') == $service->id)>{{ $service->name }}</option>@endforeach</select></div>
+        <div class="field"><label for="stage">Status peluang</label><select class="input" id="stage" name="stage"><option value="">Semua status</option>@foreach(['baru'=>'Baru','dihubungi'=>'Dihubungi','penawaran'=>'Penawaran','negosiasi'=>'Negosiasi','berhasil'=>'Berhasil','gagal'=>'Gagal'] as $value=>$label)<option value="{{ $value }}" @selected(request('stage') === $value)>{{ $label }}</option>@endforeach</select></div>
+        <div class="span-2"><button class="btn btn-primary" type="submit">Terapkan filter →</button> <a class="btn" href="{{ route('reports.index') }}">Reset</a></div>
+    </form>
+</div>
+<div class="report-kpis">
+    @foreach([['inquiries','Lead masuk', $metrics['inquiries'], 'Permintaan pada periode terpilih'], ['won','Peluang berhasil', $metrics['won'], 'Konversi yang berhasil ditutup'], ['lost','Peluang gagal', $metrics['lost'], 'Konversi yang gagal ditutup'], ['conversion','Tingkat konversi', $metrics['conversion_percent'], 'Dari seluruh peluang tertutup']] as [$tone,$label,$number,$caption])
+        <article class="card report-kpi report-kpi--{{ $tone }}"><span class="report-kpi-label">{{ $label }}</span><strong>{{ $tone === 'conversion' ? number_format((float)$number,1,',','.').'%' : number_format((float)$number,0,',','.') }}</strong><small>{{ $caption }}</small><span class="report-kpi-orb" aria-hidden="true"></span></article>
+    @endforeach
+</div>
+<div class="report-insight-grid">
+    <section class="card report-chart-card"><div class="report-card-heading"><div><span class="eyebrow">RINGKASAN KONVERSI</span><h2>Hasil peluang</h2></div><span class="report-chart-total">{{ $metrics['won'] + $metrics['lost'] }} ditutup</span></div>
+        @php $closedTotal = (int) $metrics['won'] + (int) $metrics['lost']; $wonShare = $closedTotal ? round(100 * $metrics['won'] / $closedTotal) : 0; $lostShare = $closedTotal ? 100 - $wonShare : 0; @endphp
+        <div class="report-conversion-visual"><div class="report-donut" role="img" aria-label="{{ $wonShare }} persen berhasil, {{ $lostShare }} persen gagal" style="--won:{{ $wonShare }}%"><div><strong>{{ $wonShare }}%</strong><span>berhasil</span></div></div><div class="report-legend"><div><i class="legend-won"></i><span>Berhasil</span><strong>{{ $metrics['won'] }}</strong></div><div><i class="legend-lost"></i><span>Gagal</span><strong>{{ $metrics['lost'] }}</strong></div></div></div>
+        <p class="report-chart-note">Perbandingan dihitung dari peluang yang ditutup pada periode terpilih.</p>
+    </section>
+    <section class="card report-value-card"><span class="eyebrow">NILAI PESANAN TERCATAT</span><h2>Nilai hasil konversi</h2><strong class="report-sales-value">Rp {{ number_format((float)$metrics['sales_value'],0,',','.') }}</strong><div class="report-value-track"><span style="width:{{ min(100, (float)$metrics['sales_value'] > 0 ? max(12, $metrics['conversion_percent']) : 0) }}%"></span></div><p>Tidak termasuk pesanan dibatalkan. Berdasarkan tanggal penutupan konversi, bukan pembayaran atau laba.</p><div class="report-resolution"><span class="report-resolution-icon">↗</span><div><small>Rata-rata penyelesaian keluhan</small><strong>{{ $metrics['average_ticket_resolution_hours'] === null ? 'Belum ada tiket selesai' : number_format((float)$metrics['average_ticket_resolution_hours'],1,',','.').' jam' }}</strong></div></div></section>
+</div>
+<div class="card report-history"><div class="toolbar"><div><span class="eyebrow">DATA PELUANG</span><strong>Riwayat konversi</strong></div><span class="help">{{ $records->total() }} data · termasuk data legacy</span></div><div class="table-wrap"><table class="table"><thead><tr><th>Peluang</th><th>Kontak</th><th>Status</th><th>Estimasi</th><th>Dibuat</th></tr></thead><tbody>@forelse($records as $record)<tr><td>{{ $record->title }}</td><td>{{ $record->contact?->name ?? '—' }}</td><td><span class="badge">{{ ucfirst($record->stage) }}</span></td><td>Rp {{ number_format((float)$record->estimated_value,0,',','.') }}</td><td>{{ $record->created_at?->format('d M Y') }}</td></tr>@empty<tr><td colspan="5" class="empty">Belum ada peluang pada periode ini.</td></tr>@endforelse</tbody></table></div><div class="pagination">{{ $records->links() }}</div></div>
+<p class="help" style="margin-top:20px">Periode {{ $from->format('d/m/Y') }}–{{ $to->format('d/m/Y') }} · Zona waktu: {{ $timezone }}. Permintaan memakai tanggal dibuat; hasil konversi memakai tanggal ditutup; durasi keluhan memakai tanggal penyelesaian. Filter status hanya berlaku pada tabel historis, berdasarkan tanggal dibuat.</p>
+</div>
+@endsection

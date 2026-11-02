@@ -1,0 +1,232 @@
+.crm-internal [data-workspace="operations"] {
+    gap: 28px;
+}
+.crm-internal [data-workspace="operations"] > .page-head {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 160px;
+    padding: 34px 38px;
+    border: 0;
+    border-radius: 24px;
+    color: #fff;
+    background:
+        radial-gradient(ellipse at 88% 18%, #79c99c70 0, transparent 34%),
+        linear-gradient(120deg, #103f35 0%, #17624b 58%, #287755 100%);
+    box-shadow: 0 18px 45px #123c2c24;
+}
+.crm-internal [data-workspace="operations"] > .page-head:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 260px;
+    height: 260px;
+    right: 7%;
+    top: -145px;
+    border: 1px solid #ffffff24;
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 26px #ffffff0a,
+        0 0 0 54px #ffffff08;
+}
+.crm-internal [data-workspace="operations"] > .page-head .eyebrow {
+    color: #c3edcf;
+}
+.crm-internal [data-workspace="operations"] > .page-head h1 {
+    color: #fff;
+    font-size: clamp(27px, 3.2vw, 39px);
+}
+.crm-internal [data-workspace="operations"] > .page-head p {
+    max-width: 650px;
+    margin-top: 9px;
+    color: #e0f2e7;
+    font-size: 14px;
+}
+.crm-internal [data-workspace="operations"] > .page-head .btn-primary {
+    min-height: 46px;
+    padding: 0 18px;
+    border: 1px solid #ffffff38;
+    border-radius: 12px;
+    background: #f3ffdf;
+    color: #174733;
+    box-shadow: 0 7px 18px #062c2040;
+}
+.crm-internal [data-workspace="operations"] > .section-head {
+    align-items: end;
+    margin: 0 0 -8px;
+}
+.crm-internal [data-workspace="operations"] > .section-head h2 {
+    margin-top: 5px;
+    font-size: 22px;
+    letter-spacing: -0.025em;
+}
+.crm-internal [data-workspace="operations"] .dashboard-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+.crm-internal [data-workspace="operations"] .dashboard-metrics .metric {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 154px;
+    padding: 22px 23px;
+    border: 1px solid #e1ebe4;
+    border-top: 0;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #fff 35%, #f5faf6);
+    box-shadow: 0 9px 26px #173d2809;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+.crm-internal [data-workspace="operations"] .dashboard-metrics .metric:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: linear-gradient(#88c89d, #2e7954);
+}
+.crm-internal [data-workspace="operations"] .dashboard-metrics .metric:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 104px;
+    height: 104px;
+    right: -34px;
+    top: -38px;
+    border-radius: 50%;
+    background: #e9f5ec;
+}
+.crm-internal [data-workspace="operations"] .dashboard-metrics .metric:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px #173d2815;
+}
+.crm-internal [data-workspace="operations"] .dashboard-metrics .metric small {
+    display: block;
+    color: #64796c;
+    font-size: 12px;
+    font-weight: 650;
+}
+.crm-internal [data-workspace="operations"] .dashboard-metrics .metric strong {
+    display: block;
+    margin-top: 13px;
+    color: #174c37;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+.crm-internal [data-workspace="operations"] .dashboard-metrics .metric .help {
+    display: block;
+    margin-top: 12px;
+    color: #839087;
+    font-size: 10px;
+}
+.crm-internal [data-workspace="operations"] > .grid-2 {
+    gap: 16px;
+}
+.crm-internal [data-workspace="operations"] > .grid-2 > .card {
+    position: relative;
+    padding: 27px 28px;
+    border-radius: 19px;
+    background: linear-gradient(135deg, #fff 55%, #f5faf6);
+    box-shadow: 0 9px 26px #173d2808;
+}
+.crm-internal [data-workspace="operations"] > .grid-2 > .card:first-child {
+    border-left: 4px solid #78b58b;
+}
+.crm-internal [data-workspace="operations"] > .grid-2 > .card:nth-child(2) {
+    border-left: 4px solid #82a9d7;
+}
+.crm-internal [data-workspace="operations"] > .grid-2 h2 {
+    margin: 8px 0 9px;
+    font-size: 20px;
+    letter-spacing: -0.025em;
+}
+.crm-internal [data-workspace="operations"] > .grid-2 p {
+    max-width: 650px;
+    margin: 0 0 17px;
+    color: #66796e;
+    font-size: 13px;
+}
+.crm-internal [data-workspace="operations"] > .grid-2 .btn {
+    background: #fff;
+    box-shadow: 0 3px 12px #193d2608;
+}
+.crm-internal [data-workspace="operations"] .quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 16px;
+}
+.crm-internal [data-workspace="operations"] > .card {
+    border-radius: 19px;
+    box-shadow: 0 9px 28px #173d2808;
+}
+.crm-internal [data-workspace="operations"] > .card > .toolbar {
+    padding: 22px 26px;
+}
+.crm-internal [data-workspace="operations"] > .card.card-pad {
+    padding: 27px;
+}
+.crm-internal [data-workspace="operations"] .workspace-summary > div {
+    position: relative;
+    overflow: hidden;
+    border-top: 0;
+    background: linear-gradient(145deg, #f4faf5, #fff 80%);
+}
+.crm-internal [data-workspace="operations"] .workspace-summary > div:before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: #72a785;
+}
+.crm-internal [data-workspace="operations"] .inbox-metric {
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+.crm-internal [data-workspace="operations"] .inbox-metric:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px #173d2814;
+}
+@media (max-width: 1000px) {
+    .crm-internal [data-workspace="operations"] .dashboard-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 640px) {
+    .crm-internal [data-workspace="operations"] {
+        gap: 20px;
+    }
+    .crm-internal [data-workspace="operations"] > .page-head {
+        min-height: 0;
+        padding: 25px 22px;
+        border-radius: 19px;
+    }
+    .crm-internal [data-workspace="operations"] > .page-head:after {
+        right: -105px;
+    }
+    .crm-internal [data-workspace="operations"] .dashboard-metrics {
+        gap: 10px;
+    }
+    .crm-internal [data-workspace="operations"] .dashboard-metrics .metric {
+        min-height: 132px;
+        padding: 17px;
+    }
+    .crm-internal
+        [data-workspace="operations"]
+        .dashboard-metrics
+        .metric
+        strong {
+        font-size: 31px;
+    }
+    .crm-internal [data-workspace="operations"] > .grid-2 {
+        grid-template-columns: 1fr;
+    }
+    .crm-internal [data-workspace="operations"] > .grid-2 > .card {
+        padding: 21px;
+    }
+}

@@ -1,0 +1,687 @@
+/* Login-only composition. Shared auth and application styles remain untouched. */
+.rk-login {
+    font-family:
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    background: #f5f7f2;
+    color: #183e31;
+    -webkit-font-smoothing: antialiased;
+}
+.rk-login .rk-shell {
+    min-height: 100svh;
+    display: grid;
+    grid-template-columns: 1.08fr 1fr;
+    padding: 18px;
+    gap: 18px;
+    max-width: 1680px;
+    margin: auto;
+    animation: rk-page-enter 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes rk-page-enter {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.rk-login .rk-story {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: 24px;
+    background:
+        radial-gradient(ellipse at 88% 92%, #4b8054 0, transparent 45%),
+        radial-gradient(ellipse at 10% 4%, #28634b 0, transparent 42%),
+        linear-gradient(145deg, #103d30, #184c39);
+    color: #fff;
+    padding: 38px clamp(28px, 4.5vw, 76px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 42px;
+}
+.rk-login .rk-story::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+        linear-gradient(#d9efcf07 1px, transparent 1px),
+        linear-gradient(90deg, #d9efcf07 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(135deg, transparent, #000);
+}
+.rk-login .rk-story::after {
+    content: "";
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    border: 1px solid #d7f5a71a;
+    border-radius: 50%;
+    right: -260px;
+    top: -220px;
+    box-shadow:
+        0 0 0 60px #d7f5a706,
+        0 0 0 120px #d7f5a704;
+    z-index: -1;
+}
+.rk-login .rk-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    align-self: flex-start;
+    font-weight: 750;
+    font-size: 25px;
+    letter-spacing: -1px;
+    line-height: 1.15;
+}
+.rk-login .rk-brand-mark {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: #d7f5a7;
+    color: #173e2f;
+    font-size: 31px;
+}
+.rk-login .rk-brand-caption {
+    display: block;
+    margin-top: 7px;
+    font-size: 8px;
+    letter-spacing: 1.8px;
+    font-weight: 600;
+    color: #c0d7c9;
+}
+.rk-login .rk-story-content {
+    position: relative;
+    max-width: 540px;
+    width: 100%;
+    margin: auto 0;
+    animation: rk-content-enter 0.7s 0.08s both;
+}
+@keyframes rk-content-enter {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.rk-login .rk-story::after {
+    animation: rk-orbit 24s linear infinite;
+}
+@keyframes rk-orbit {
+    to { transform: rotate(360deg); }
+}
+.rk-login .rk-eyebrow {
+    display: block;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1.9px;
+    line-height: 1.6;
+    color: #577361;
+}
+.rk-login .rk-story .rk-eyebrow {
+    color: #d7f5a7;
+}
+.rk-login h1 {
+    font-size: clamp(32px, 3.35vw, 49px);
+    line-height: 1.14;
+    letter-spacing: -1.9px;
+    font-weight: 650;
+    margin: 18px 0;
+}
+.rk-login h1 em {
+    font-style: normal;
+    color: #d7f5a7;
+}
+.rk-login .rk-story-content > p {
+    max-width: 410px;
+    color: #c3d8cb;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+}
+.rk-login .rk-story-accent {
+    position: relative;
+    display: grid;
+    width: min(100%, 430px);
+    min-height: 210px;
+    place-items: center;
+    margin-top: 38px;
+    overflow: hidden;
+    border: 1px solid #d3e5d426;
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at center, #d7f5a714, transparent 46%),
+        linear-gradient(120deg, #ffffff08, #ffffff02);
+}
+.rk-login .rk-accent-orbit {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #d7f5a759;
+    border-radius: 50%;
+    box-shadow: 0 0 35px #d7f5a710;
+}
+.rk-login .rk-accent-orbit-one {
+    animation: rk-orbit 18s linear infinite;
+}
+.rk-login .rk-accent-orbit-two {
+    width: 220px;
+    height: 220px;
+    border-color: #d7f5a72b;
+    animation: rk-orbit 26s linear infinite reverse;
+}
+.rk-login .rk-accent-core {
+    z-index: 1;
+    display: grid;
+    width: 66px;
+    height: 66px;
+    place-items: center;
+    border: 1px solid #d7f5a780;
+    border-radius: 21px;
+    background: linear-gradient(145deg, #ddf78b, #b9e875);
+    color: #164631;
+    box-shadow: 0 12px 34px #071e1740;
+    animation: rk-core-float 4s ease-in-out infinite;
+}
+.rk-login .rk-accent-core svg {
+    width: 34px;
+    height: 34px;
+}
+.rk-login .rk-accent-label {
+    position: absolute;
+    bottom: 19px;
+    color: #c3d8cb;
+    font-size: 10px;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+}
+@keyframes rk-core-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+.rk-login .rk-illustration {
+    margin: 30px 0 0;
+    max-width: 620px;
+}
+.rk-login figcaption {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    font-weight: 650;
+    color: #c0d7c9;
+    margin-bottom: 12px;
+}
+.rk-login .rk-service-flow {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 550px;
+    padding: 8px 20px;
+    border: 1px solid #d3e5d426;
+    border-radius: 16px;
+    background: linear-gradient(110deg, #ffffff0b, #ffffff04);
+    backdrop-filter: blur(8px);
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+.rk-login .rk-service-flow:hover {
+    transform: translateY(-3px);
+    border-color: #d3e5d44a;
+    background: linear-gradient(110deg, #ffffff12, #ffffff06);
+}
+.rk-login .rk-flow-step {
+    display: grid;
+    grid-template-columns: 32px 40px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    min-height: 78px;
+}
+.rk-login .rk-step-number {
+    font-size: 10px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: #b7cebd;
+}
+.rk-login .rk-step-icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #d7f5a733;
+    border-radius: 11px;
+    background: #d7f5a711;
+    color: #d7f5a7;
+}
+.rk-login .rk-step-icon svg {
+    width: 18px;
+    height: 18px;
+}
+.rk-login .rk-flow-step div {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+}
+.rk-login .rk-flow-step small {
+    color: #a9c5b3;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+.rk-login .rk-flow-step strong {
+    color: #f4f8f3;
+    font-size: 12px;
+    font-weight: 650;
+}
+.rk-login .rk-flow-step p {
+    margin: 0;
+    color: #bed2c5;
+    font-size: 10px;
+    line-height: 1.45;
+}
+.rk-login .rk-flow-connector {
+    height: 12px;
+    margin-left: 59px;
+    border-left: 1px solid #d7f5a74d;
+}
+.rk-login .rk-story-footer {
+    font-size: 10px;
+    line-height: 1.6;
+    color: #bad0c3;
+    margin: 0;
+}
+.rk-login .rk-access {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 48px 24px 66px;
+    background:
+        radial-gradient(ellipse at 90% 10%, #e8efdd80, transparent 60%),
+        radial-gradient(ellipse at 10% 90%, #e4eee0a0, transparent 48%);
+}
+.rk-login .rk-access-content {
+    width: 100%;
+    max-width: 440px;
+    margin: auto 0;
+}
+.rk-login .rk-card {
+    background: #fff;
+    border: 1px solid #e4e9df;
+    border-radius: 22px;
+    padding: 36px;
+    box-shadow:
+        0 24px 65px -30px #29483133,
+        0 2px 6px #29483103;
+    animation: rk-card-enter 0.7s 0.12s both;
+}
+@keyframes rk-card-enter {
+    from { opacity: 0; transform: translateY(14px) scale(0.99); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.rk-login .rk-card-symbol {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    background: #f0f6e9;
+    border: 1px solid #e3eed8;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    color: #35613e;
+}
+.rk-login .rk-card-symbol svg {
+    width: 23px;
+    height: 23px;
+}
+.rk-login h2 {
+    font-size: 27px;
+    font-weight: 650;
+    line-height: 1.25;
+    letter-spacing: -1px;
+    margin: 10px 0;
+}
+.rk-login .rk-intro {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #687b70;
+    margin: 0 0 28px;
+    max-width: 290px;
+}
+.rk-login .rk-form {
+    display: grid;
+    gap: 20px;
+}
+.rk-login .rk-field {
+    display: grid;
+    gap: 8px;
+}
+.rk-login .rk-field > label {
+    font-size: 12px;
+    font-weight: 650;
+    color: #304b3c;
+}
+.rk-login .rk-field input {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid #d7dfd5;
+    border-radius: 11px;
+    background: #fcfdfb;
+    padding: 13px 14px;
+    font-size: 13px;
+    line-height: 20px;
+    color: #243e2e;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+.rk-login .rk-field input:hover {
+    border-color: #a9bda9;
+    background: #fff;
+}
+.rk-login .rk-field input::placeholder {
+    color: #7b887f;
+    opacity: 1;
+}
+.rk-login .rk-field input:focus {
+    border-color: #507b44;
+    box-shadow: 0 0 0 3px #d7f5a780;
+    outline: none;
+    background: #fff;
+}
+.rk-login .rk-password {
+    position: relative;
+}
+.rk-login .rk-password input {
+    padding-right: 50px;
+}
+.rk-login .rk-password-toggle {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    background: transparent;
+    border-radius: 7px;
+    color: #607466;
+}
+.rk-login .rk-password-toggle:hover {
+    background: #edf3e8;
+    color: #234b34;
+}
+.rk-login .rk-eye-slash {
+    display: none;
+}
+.rk-login .rk-password-toggle[aria-pressed="true"] .rk-eye-slash {
+    display: block;
+}
+.rk-login .rk-form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 11px;
+    line-height: 1.6;
+}
+.rk-login .rk-remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #52695a;
+    cursor: pointer;
+    min-height: 28px;
+}
+.rk-login .rk-remember input {
+    width: 16px;
+    height: 16px;
+    accent-color: #245b3f;
+    margin: 0;
+}
+.rk-login .rk-form-options a {
+    font-weight: 650;
+    color: #315e3d;
+    padding: 5px 0;
+}
+.rk-login .rk-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid #224c35;
+    border-radius: 11px;
+    background: linear-gradient(110deg, #214e36, #286044);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 650;
+    box-shadow: 0 7px 16px #1c503322;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+.rk-login .rk-submit span {
+    font-size: 19px;
+    line-height: 1;
+    font-weight: 400;
+    transition: transform 0.2s ease;
+}
+.rk-login .rk-submit:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(110deg, #153d29, #20513a);
+    box-shadow: 0 10px 20px #1c50332b;
+}
+.rk-login .rk-submit:hover span {
+    transform: translateX(4px);
+}
+.rk-login .rk-help {
+    border-top: 1px solid #edf0e9;
+    margin-top: 26px;
+    padding-top: 21px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.8;
+    color: #354e3e;
+}
+.rk-login .rk-help span {
+    color: #6a7c70;
+}
+.rk-login .rk-customer-link {
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.8;
+    color: #526e59;
+    margin: 22px auto 0;
+    padding: 8px;
+}
+.rk-login .rk-customer-link span {
+    margin-left: 5px;
+}
+.rk-login .rk-footer {
+    font-size: 9px;
+    line-height: 1.8;
+    color: #728071;
+    text-align: center;
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
+    right: 20px;
+}
+.rk-login .rk-footer span {
+    padding: 0 6px;
+}
+.rk-login .rk-notice {
+    font-size: 12px;
+    line-height: 1.6;
+    border-radius: 9px;
+    background: #eef6e8;
+    border: 1px solid #c7dcb8;
+    padding: 12px;
+    margin-bottom: 20px;
+    color: #315733;
+}
+.rk-login .rk-notice-error {
+    background: #fff4f0;
+    border-color: #efcfc5;
+    color: #9b342b;
+}
+.rk-login .rk-error {
+    font-size: 11px;
+    color: #a03329;
+    line-height: 1.5;
+}
+.rk-login .rk-field input[aria-invalid="true"] {
+    border-color: #bb5545;
+}
+.rk-login a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.rk-login :is(a, button, input):focus-visible {
+    outline: 3px solid #82a65a;
+    outline-offset: 4px;
+}
+@media (min-width: 1500px) {
+    .rk-login .rk-shell {
+        padding: 28px;
+        gap: 28px;
+    }
+    .rk-login .rk-story {
+        min-height: calc(100svh - 56px);
+    }
+}
+@media (max-width: 1050px) {
+    .rk-login .rk-shell {
+        grid-template-columns: 1fr 1fr;
+        padding: 12px;
+        gap: 0;
+    }
+    .rk-login .rk-story {
+        padding: 32px 28px;
+    }
+    .rk-login .rk-access {
+        padding: 32px 20px 64px;
+    }
+    .rk-login .rk-card {
+        padding: 28px;
+    }
+    .rk-login h2 {
+        font-size: 24px;
+    }
+}
+@media (max-width: 760px) {
+    .rk-login .rk-shell {
+        display: block;
+        padding: 0;
+    }
+    .rk-login .rk-story {
+        border-radius: 0;
+        padding: 24px;
+        gap: 28px;
+    }
+    .rk-login .rk-story-content {
+        max-width: 480px;
+        margin: auto;
+    }
+    .rk-login h1 {
+        font-size: 33px;
+        letter-spacing: -1px;
+        margin: 10px 0;
+    }
+    .rk-login .rk-story-content > p {
+        font-size: 12px;
+        max-width: 380px;
+    }
+    .rk-login .rk-brand {
+        font-size: 22px;
+    }
+    .rk-login .rk-brand-mark {
+        width: 37px;
+        height: 37px;
+        font-size: 26px;
+    }
+    .rk-login .rk-brand-caption {
+        font-size: 7px;
+    }
+    .rk-login .rk-story-accent {
+        min-height: 130px;
+        width: min(100%, 360px);
+        margin-top: 22px;
+    }
+    .rk-login .rk-accent-orbit {
+        width: 100px;
+        height: 100px;
+    }
+    .rk-login .rk-accent-orbit-two {
+        width: 145px;
+        height: 145px;
+    }
+    .rk-login .rk-accent-core {
+        width: 48px;
+        height: 48px;
+        border-radius: 15px;
+    }
+    .rk-login .rk-accent-core svg {
+        width: 26px;
+        height: 26px;
+    }
+    .rk-login .rk-accent-label {
+        bottom: 10px;
+        font-size: 8px;
+    }
+    .rk-login .rk-access {
+        padding: 24px 20px 26px;
+    }
+    .rk-login .rk-card {
+        padding: 28px;
+        border-radius: 18px;
+    }
+    .rk-login .rk-card-symbol {
+        display: none;
+    }
+    .rk-login .rk-footer {
+        position: static;
+        margin-top: 28px;
+    }
+    .rk-login .rk-field input {
+        font-size: 16px;
+    }
+    .rk-login .rk-customer-link {
+        font-size: 11px;
+    }
+    .rk-login .rk-eyebrow {
+        font-size: 9px;
+    }
+}
+@media (max-width: 360px) {
+    .rk-login .rk-card {
+        padding: 23px 20px;
+    }
+    .rk-login .rk-access {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .rk-login h2 {
+        font-size: 23px;
+    }
+    .rk-login .rk-form-options {
+        font-size: 10px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .rk-login *,
+    .rk-login *::before,
+    .rk-login *::after {
+        transition: none !important;
+        animation: none !important;
+        scroll-behavior: auto !important;
+    }
+}

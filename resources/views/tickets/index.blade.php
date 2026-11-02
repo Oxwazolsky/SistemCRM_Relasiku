@@ -1,0 +1,16 @@
+@extends('layouts.app')
+@section('title', 'Antrean keluhan')
+@section('content')
+<div class="workspace-page" data-workspace="ticket-queue">
+<div class="page-head"><div><span class="eyebrow">Layanan pelanggan</span><h1>Antrean keluhan</h1><p>Tinjau keluhan masuk, tentukan penanggung jawab, dan catat penyelesaiannya.</p></div>@if(auth()->user()->role !== 'admin')<a class="btn btn-primary" href="{{ route('tickets.create') }}">＋ Catat keluhan manual</a>@endif</div>
+<div class="ticket-metrics">@foreach(['baru'=>'Baru','ditangani'=>'Ditangani','selesai'=>'Selesai','ditutup'=>'Ditutup'] as $status=>$label)<a class="ticket-metric" href="{{ route('tickets.index', ['status'=>$status]) }}"><span>{{ $label }}</span><strong>{{ $statusCounts[$status] ?? 0 }}</strong><small>Lihat tiket <span aria-hidden="true">→</span></small></a>@endforeach</div>
+<p class="help ticket-count-note">Jumlah mencakup seluruh keluhan yang boleh Anda akses, sebelum pencarian.</p>
+<div class="card"><div class="toolbar"><div><h2>Daftar keluhan</h2><span class="help">{{ $records->total() }} hasil · gunakan filter untuk memprioritaskan penanganan</span></div><form method="GET" action="{{ route('tickets.index') }}"><input class="input" name="search" aria-label="Cari keluhan" placeholder="Cari subjek keluhan" value="{{ request('search') }}"><select class="input" name="status" aria-label="Status keluhan"><option value="">Semua status</option>@foreach(['baru','ditangani','selesai','ditutup'] as $status)<option value="{{ $status }}" @selected(request('status') === $status)>{{ ucfirst($status) }}</option>@endforeach</select><button class="btn">Terapkan</button><a href="{{ route('tickets.index') }}">Reset</a></form></div>
+<div class="table-wrap"><table class="table"><thead><tr><th>Tiket / sumber</th><th>Pelanggan</th><th>Ringkasan</th><th>CS</th><th>Masuk</th><th>Status</th><th>Penanganan</th></tr></thead><tbody>
+@forelse($records as $ticket)
+<tr><td><strong>#{{ $ticket->id }}</strong><div class="help">{{ $ticket->inquiry_id ? 'Otomatis via permintaan' : 'Manual / data lama' }}@if($ticket->inquiry_id)<br>Permintaan #{{ $ticket->inquiry_id }} · {{ $ticket->inquiry?->source ?: 'Sumber tidak tersedia' }}@endif</div></td><td>{{ $ticket->contact?->name ?? $ticket->inquiry?->submitted_name ?? 'Pelanggan belum diketahui' }}@if(!$ticket->contact_id)<div class="help">Belum ditautkan ke pelanggan terverifikasi</div>@endif</td><td><strong>{{ $ticket->subject }}</strong><div class="help">{{ Str::limit($ticket->description, 120) }}</div></td><td>{{ $ticket->assignee?->name ?? (auth()->user()->role === 'cs' ? 'Tersedia untuk ditangani' : 'Belum ditugaskan') }}</td><td>{{ $ticket->created_at?->format('d M Y H:i') ?? '—' }}</td><td><span class="badge" data-status="{{ $ticket->status }}">{{ ucfirst($ticket->status) }}</span></td><td><a href="{{ route('tickets.show', $ticket) }}">{{ $ticket->status === 'ditutup' ? 'Lihat hasil' : 'Tinjau & tangani' }} →</a></td></tr>
+@empty<tr><td colspan="7"><div class="empty"><strong>Tidak ada keluhan dalam antrean ini</strong><p>Belum ada tiket yang dapat Anda akses atau sesuai filter. Keluhan otomatis muncul setelah pengirim menyetujui pencatatan melalui integrasi yang aktif.</p></div></td></tr>@endforelse
+</tbody></table></div>{{ $records->links() }}</div>
+
+</div>
+@endsection

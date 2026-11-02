@@ -1,0 +1,165 @@
+.crm-internal .workspace-page[data-workspace="ticket-queue"] {
+    gap: 22px;
+}
+.crm-internal [data-workspace="ticket-queue"] .ticket-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+.crm-internal [data-workspace="ticket-queue"] .ticket-metric {
+    min-height: 154px;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid #dce8e1;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #fff, #f8fbf9);
+    box-shadow: 0 8px 24px #153e2708;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+.crm-internal [data-workspace="ticket-queue"] .ticket-metric:hover {
+    transform: translateY(-3px);
+    border-color: #a8cbb4;
+    box-shadow: 0 14px 30px #153e2712;
+}
+.crm-internal [data-workspace="ticket-queue"] .ticket-metric > span {
+    color: #62796d;
+    font-size: 13px;
+    font-weight: 650;
+}
+.crm-internal [data-workspace="ticket-queue"] .ticket-metric strong {
+    color: #153e31;
+    font-size: 34px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.04em;
+}
+.crm-internal [data-workspace="ticket-queue"] .ticket-metric small {
+    margin-top: 4px;
+    color: #658273;
+    font-size: 11px;
+}
+.crm-internal [data-workspace="ticket-queue"] .ticket-count-note {
+    margin: -8px 0 0;
+    font-size: 12px;
+}
+.crm-internal [data-workspace="ticket-queue"] > .card {
+    border-radius: 18px;
+    box-shadow: 0 10px 30px #153e2708;
+}
+.crm-internal [data-workspace="ticket-queue"] .toolbar {
+    padding: 22px 26px;
+}
+.crm-internal [data-workspace="ticket-queue"] .toolbar h2 {
+    margin: 0 0 5px;
+    font-size: 19px;
+}
+.crm-internal [data-workspace="ticket-queue"] .toolbar .help {
+    font-size: 12px;
+}
+.crm-internal [data-workspace="ticket-queue"] .empty {
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.crm-internal [data-workspace="ticket-queue"] .empty strong {
+    color: #244b3a;
+    font-size: 15px;
+}
+.crm-internal [data-workspace="ticket-queue"] .empty p {
+    max-width: 680px;
+    margin: 8px auto 0;
+    font-size: 13px;
+}
+.crm-internal [data-workspace="ticket-queue"] .ticket-attachment-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    padding: 4px 9px;
+    border: 1px solid #d6e8db;
+    border-radius: 999px;
+    background: #edf6ef;
+    color: #286143;
+    font-size: 10px;
+    font-weight: 700;
+}
+.crm-internal [data-workspace="ticket-detail"] .ticket-evidence {
+    margin: 20px 0;
+    padding: 16px;
+    border: 1px solid #dfeae3;
+    border-radius: 14px;
+    background: linear-gradient(120deg, #f6faf7, #fff);
+}
+.crm-internal [data-workspace="ticket-detail"] .ticket-evidence h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #254b37;
+    font-size: 14px;
+}
+.crm-internal [data-workspace="ticket-detail"] .ticket-evidence h3 span {
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: #e8f3eb;
+    font-size: 11px;
+}
+.crm-internal [data-workspace="ticket-detail"] .ticket-evidence ul {
+    display: grid;
+    gap: 8px;
+    padding: 0;
+    list-style: none;
+}
+.crm-internal [data-workspace="ticket-detail"] .ticket-evidence li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 12px;
+    border: 1px solid #e6ede8;
+    border-radius: 10px;
+    background: #fff;
+}
+.crm-internal [data-workspace="ticket-detail"] .ticket-evidence li strong,
+.crm-internal [data-workspace="ticket-detail"] .ticket-evidence li small {
+    display: block;
+}
+.crm-internal [data-workspace="ticket-detail"] .ticket-evidence li strong {
+    overflow-wrap: anywhere;
+    font-size: 12px;
+}
+.crm-internal [data-workspace="ticket-detail"] .ticket-evidence li small {
+    margin-top: 3px;
+    color: #718078;
+    font-size: 10px;
+}
+.crm-internal [data-workspace="ticket-detail"] .ticket-evidence .help {
+    margin-bottom: 0;
+    font-size: 11px;
+}
+@media (max-width: 850px) {
+    .crm-internal [data-workspace="ticket-queue"] .ticket-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 540px) {
+    .crm-internal [data-workspace="ticket-queue"] .ticket-metrics {
+        gap: 10px;
+    }
+    .crm-internal [data-workspace="ticket-queue"] .ticket-metric {
+        min-height: 128px;
+        padding: 16px;
+    }
+    .crm-internal [data-workspace="ticket-queue"] .toolbar {
+        padding: 18px;
+    }
+}
